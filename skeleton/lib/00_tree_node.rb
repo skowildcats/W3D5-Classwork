@@ -58,6 +58,10 @@ class PolyTreeNode
       end
       # return nil
     end
+
+    def inspect
+      @value.inspect
+    end
     
 end
 

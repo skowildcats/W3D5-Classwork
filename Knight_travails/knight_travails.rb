@@ -1,3 +1,4 @@
+require "byebug"
 require_relative "Polytreenode"
 
 class KnightPathFinder
@@ -40,21 +41,21 @@ class KnightPathFinder
             end
         end
     end
+
+    def find_path(end_pos)
+        trace_path_back(@root_node.dfs(end_pos))
+    end
+
+    def trace_path_back(end_node)
+        path = []
+        path << end_node.position
+        until end_node.parent == nil
+            path << end_node.parent.position
+            end_node = end_node.parent
+        end
+        path.reverse
+        # better to go up the tree since down the tree has multiple routes (childs)
+        # where as up only has one parent so we will have one route to the root
+    end
+
 end
-
-kpf = KnightPathFinder.new([0,0])
-# p KnightPathFinder.valid_moves([0,0])
-kpf.build_move_tree
-p kpf.root_node.children
-p kpf.root_node.children[0].children
-# p kpf.root_node.children[1].children
-p kpf.root_node.children[0].children[0].children
-# p kpf.root_node.children[0].children[1].children
-# p kpf.root_node.children[0].children[2].children
-# p kpf.root_node.children[0].children[3].children
-# p kpf.root_node.children[0].children[4].children
-p kpf.root_node.children[0].children[0].children[0].children
-p kpf.root_node.children[0].children[0].children[0].children[0].children
-p kpf.root_node.children[0].children[0].children[0].children[0].children[0].children
-p kpf.root_node.children[0].children[0].children[0].children[0].children[0].children[0].children
-

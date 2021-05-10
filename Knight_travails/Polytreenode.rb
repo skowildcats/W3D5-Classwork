@@ -58,6 +58,7 @@ class PolyTreeNode
     end
 
     def inspect
+      # @children.inspect
       @position.inspect
     end
     
